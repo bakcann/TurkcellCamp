@@ -11,21 +11,23 @@ public class SaleManager implements SaleService {
 	private SaleDao saleDao;
 	private Game game;
 	private User user;
+	
 	private Campaign campaign;
 	
 
-	public SaleManager(SaleDao saleDao, Game game, User user, Campaign campaign) {
+	public SaleManager(SaleDao saleDao, Game game,User user, Campaign campaign) {
 		super();
 		this.saleDao = saleDao;
 		this.game = game;
-		this.user = user;
+		this.user=user;
+		
 		this.campaign = campaign;
 	}
 
 	
 	@Override
 	public void add(Sale sale, User user) {
-		if(game.getPrice()>=100) {
+		if(game.getPrice()>=campaign.getParticipationLimit()) {
 		System.out.println(user.getFirstName()+"," + campaign.getName()+ "isimli kampanyadan faydalandý.");
 		sale.setGame(game);
 		sale.setUser(user);

@@ -27,16 +27,17 @@ public class Main {
 		userManager.add(user);
 		
 		GameService gameManager = new GameManager(new GameHibernateImpls());
-		Game game = new Game(1,"Counter Strike",10,0);
+		Game game = new Game(1,"Counter Strike",100,0);
 		gameManager.add(game);
 		
 		CampaignService campaignManager = new CampaignManager(new CampaignHibernateDao(), game);
-		Campaign campaign = new Campaign(1,"100 TL üzeri alýþveriþe 25TL indirim",25);
+		Campaign campaign = new Campaign(1,"100 TL üzeri alýþveriþe 25TL indirim",100,25);
 		campaignManager.add(campaign);
 		
 		SaleService saleManager= new SaleManager(new SaleJdbcImplsDao(), game, user, campaign) ;
 		Sale sale = new Sale(1, game, user, campaign);
 		saleManager.add(sale, user);
+		System.out.println(game.getDiscountPrice());
 		
 		
 		

@@ -19,7 +19,7 @@ public class CampaignManager implements CampaignService{
 
 	@Override
 	public void add(Campaign campaign) {
-		if(game.getPrice()>=100) {
+		if(game.getPrice()>=campaign.getParticipationLimit()) {
 		this.game.setDiscountPrice(game.getPrice()-campaign.getDiscount());
 		this.campaignDao.add(campaign);
 		}else {
